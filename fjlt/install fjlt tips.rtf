@@ -1,0 +1,117 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf830
+{\fonttbl\f0\fmodern\fcharset0 Courier;\f1\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;\red255\green255\blue255;\red0\green0\blue0;
+\red255\green255\blue255;}
+{\*\expandedcolortbl;;\cssrgb\c0\c0\c0;\cssrgb\c100000\c100000\c100000;\csgray\c0;
+\csgray\c100000;}
+\margl1440\margr1440\vieww11740\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\sl280\partightenfactor0
+
+\f0\fs24 \cf2 \cb3 \expnd0\expndtw0\kerning0
+install fftw3 (in /usr/local/lib):\
+\
+{\field{\*\fldinst{HYPERLINK "http://www.fftw.org/download.html"}}{\fldrslt http://www.fftw.org/download.html}}\
+download fftw-3.3.5.tar.gz, unzip\
+\
+(terminal:)\
+$ cd Downloads/fftw-3.3.5\
+$ ./configure\
+$ make\
+$ sudo make install\
+(enter admin password)\
+\
+run fftw_example.c using gcc: \
+\
+(terminal):\
+(navigate to directory containing fftw_example.c)\
+$ 
+\f1\fs22 \cf4 \cb5 \kerning1\expnd0\expndtw0 \CocoaLigature0 export PATH=/usr/local/gcc-6.2.0/bin:$PATH //use gcc compiler, not mac default (clang)\
+$ g++-6.2.0 -lfftw3 fftw_example.c -o a\
+$ ./a\
+\
+
+\f0\fs24 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\CocoaLigature1 run fftw_example.c using clang: \
+\
+(terminal):\
+(navigate to directory containing fftw_example.c)\
+
+\f1\fs22 \cf4 \cb5 \kerning1\expnd0\expndtw0 \CocoaLigature0 $ /usr/bin/clang -lfftw3 fftw_example.c -o a //use mac default compiler (clang)\
+$ ./a\
+\
+
+\f0\fs24 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\CocoaLigature1 install fftw3f (in /usr/local/lib):\
+\
+{\field{\*\fldinst{HYPERLINK "http://www.fftw.org/download.html"}}{\fldrslt http://www.fftw.org/download.html}}\
+download fftw-3.3.5.tar.gz, unzip\
+\
+(terminal:)\
+$ cd Downloads/fftw-3.3.5\
+$ ./configure --enable-float\
+$ make\
+$ make install\
+\
+OR\
+\
+(terminal):\
+$ sudo apt-get install libfftw3-dev
+\f1\fs22 \cf4 \cb5 \kerning1\expnd0\expndtw0 \CocoaLigature0 \
+
+\f0\fs24 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\CocoaLigature1 \
+install Cython:\
+\
+(terminal):\
+$ pip3.6 install Cython\
+\
+install fjlt:\
+\
+\pard\pardeftab720\sl280\partightenfactor0
+{\field{\*\fldinst{HYPERLINK "https://github.com/gabobert/fast-jlt"}}{\fldrslt \cf2 https://github.com/yk/fast-jlt}}\
+> Clone or download > download ZIP, unzip\
+\
+(terminal:)\
+$ cd Downloads/fa*\
+$ python3.6 setup.py install\
+delete all files from Downloads, they are in Python etc. now\
+\
+Note:\
+\
+The source code files are found at {\field{\*\fldinst{HYPERLINK "https://github.com/vkli/fast-jlt"}}{\fldrslt https://github.com/yk/fast-jlt}} > Find file\
+\
+SubsampledRandomizedFourrierTransform.py > fit(X) calculates self.D = D\
+\
+random_projection_fast.pyx > fast_unitary_transform_fast(X) calculates fftw(D(X)) = A = H(D(X))\
+\
+SubsampledRandomizedFourrierTransform.py > transform(X) calculates A[self.S,:]=S(A)=P(A)\
+\
+Fast Johnson Lindenstrauss Transform:\
+\
+Input:\
+\
+n vectors of d dimensions each, as columns of array X\
+\
+k>=8*ln(20*n)/epsilon**2\
+k must be power of 2 for optimal performance\
+details see {\field{\*\fldinst{HYPERLINK "http://www.fftw.org/fftw3_doc/Real_002dto_002dReal-Transforms.html#Real_002dto_002dReal-Transforms"}}{\fldrslt http://www.fftw.org/fftw3_doc/Real_002dto_002dReal-Transforms.html#Real_002dto_002dReal-Transforms}}\
+\
+Output: \
+\
+project down to k dimensions\
+\
+Euclidean distance distortion within k(1 +or- epsilon) w.p. >= 2/3\
+\
+\
+run fjlt transform:\
+\
+(delete srft_wisdom, run jupyter notebook fjlt_example.ipynb:)\
+\
+from fjlt.SubsampledRandomizedFourrierTransform import SubsampledRandomizedFourrierTransform\
+\
+srft=SubsampledRandomizedFourrierTransform(k)\
+\
+PHDX=srft.fit_transform(X)\
+\
+This will output P(H(D(X)))= PHDX.}
