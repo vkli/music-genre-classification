@@ -2,7 +2,15 @@
 %save ground_truth.csv as ground_truth.xlsx
 
 addpath ./Data/software/ma
-n=4;%729; %number of songs
+n=4;%Makes the repository run as is
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%{
+n=4 allows you to run mfcc.m in the repository as is. 
+
+To make the rest of the code run (Graph Laplacian, etc.), you need 
+729 .wav files in ./Data/tracks/ and to change to n=729.
+%}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 p=struct('fs',11025,'visu',0); %visu=1 include plots, visu=0 don't include
 i=1;
 song=loadwav(['./Data/tracks/',num2str(i),'.wav']);
