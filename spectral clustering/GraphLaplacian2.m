@@ -2,7 +2,7 @@
 %NOTE: if error, just run it again
 
 %load('../fjlt/workspace.mat') 
-%load('../fjlt/workspace2.mat')
+load('../fjlt/workspace2.mat')
 
 %% confusion matrices
 
@@ -74,12 +74,12 @@ for n = 1:10 %10 times
        %pgenrelabels13970 = GraphLaplacian(X13970,newX13970); %predicted labels
        %pgenrelabels14870 = GraphLaplacian(X14870,newX14870); %predicted labels
        %pgenrelabels15770 = GraphLaplacian(X15770,newX15770); %predicted labels
-       pgenrelabels256 = GraphLaplacian00(X256,Y,newX256); %predicted labels
-       pgenrelabels512 = GraphLaplacian00(X512,Y,newX512); %predicted labels
-       pgenrelabels1024 = GraphLaplacian00(X1024,Y,newX1024); %predicted labels
-       pgenrelabels2048 = GraphLaplacian00(X2048,Y,newX2048); %predicted labels
-       pgenrelabels3000 = GraphLaplacian00(X3000,Y,newX3000); %predicted labels
-       pgenrelabels4096 = GraphLaplacian00(X4096,Y,newX4096); %predicted
+       pgenrelabels256 = GraphLaplacian(X256,newX256); %predicted labels
+       pgenrelabels512 = GraphLaplacian(X512,newX512); %predicted labels
+       pgenrelabels1024 = GraphLaplacian(X1024,newX1024); %predicted labels
+       pgenrelabels2048 = GraphLaplacian(X2048,newX2048); %predicted labels
+       pgenrelabels3000 = GraphLaplacian(X3000,newX3000); %predicted labels
+       pgenrelabels4096 = GraphLaplacian(X4096,newX4096); %predicted
        m=length(test_set);
        true_genrelabels=genrelabels(test_set);  
        %[c7670,order] = confusionmat(true_genrelabels,pgenrelabels7670); %confusion matrix, order{i}=ith genre=ith row/column
